@@ -13,13 +13,13 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import ShimmerCard from "../../Components/ShimmerCard/ShimmerCard";
-import { API_URLS } from "../../utils/constant";
+import { API_URL } from "../../utils/constant";
 
 const PAGE_SIZE = 6;
 
 const ProductListScreen = () => {
   const navigation = useNavigation();
-  const tabBarHeight = useBottomTabBarHeight(); // ✅ MUST be at top
+  const tabBarHeight = useBottomTabBarHeight(); 
 
   const [allProducts, setAllProducts] = useState([]);
   const [products, setProducts] = useState([]);
@@ -49,7 +49,7 @@ const ProductListScreen = () => {
     setError(null);
 
     try {
-      const response = await fetch(API_URLS.PRODUCTS);
+      const response = await fetch(API_URL.PRODUCTS);
       if (!response.ok) throw new Error("Failed to load products");
 
       const data = await response.json();
@@ -66,7 +66,7 @@ const ProductListScreen = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch(API_URLS.PRODUCTS);
+      const response = await fetch(API_URL.PRODUCTS);
       const data = await response.json();
       setCategories(["all", ...new Set(data.map(item => item.category))]);
     } catch (error) {
@@ -123,7 +123,7 @@ const ProductListScreen = () => {
     </TouchableOpacity>
   );
 
-  // ✅ Shimmer Loader
+
   if (loading && products.length === 0) {
     return (
       <FlatList
@@ -141,7 +141,6 @@ const ProductListScreen = () => {
     );
   }
 
-  // ✅ Error UI
   if (error && !loading) {
     return (
       <View style={styles.errorContainer}>
@@ -155,7 +154,6 @@ const ProductListScreen = () => {
 
   return (
     <View style={styles.container}>
-      {/* Search */}
       <View style={styles.searchContainer}>
         <TextInput
           placeholder="Search products..."
@@ -165,7 +163,6 @@ const ProductListScreen = () => {
         />
       </View>
 
-      {/* Categories */}
       <View style={styles.categoryWrapper}>
         <ScrollView
           horizontal
@@ -194,7 +191,6 @@ const ProductListScreen = () => {
         </ScrollView>
       </View>
 
-      {/* Product List */}
       <FlatList
         data={products}
         keyExtractor={item => item.id.toString()}

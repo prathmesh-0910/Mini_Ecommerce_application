@@ -31,12 +31,12 @@ export default React.memo(ProductCard);
 const styles = StyleSheet.create({
   card: {
     width: '48%',
-    backgroundColor: '#f3f4f6', // gray-100
+    backgroundColor: '#f3f4f6', 
     borderRadius: 8,
     padding: 8,
     marginBottom: 12,
-    elevation: 3, // Android shadow
-    shadowColor: '#000', // iOS shadow
+    elevation: 3, 
+    shadowColor: '#000', 
     shadowOpacity: 0.1,
     shadowRadius: 4,
     shadowOffset: {width: 0, height: 2},
@@ -54,6 +54,6 @@ const styles = StyleSheet.create({
     marginTop: 4,
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#15803d', // green-700
+    color: '#15803d', 
   },
 });
